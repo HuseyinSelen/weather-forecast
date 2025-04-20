@@ -6,9 +6,9 @@ function App() {
   const [forecast, setForecast] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
-  const apiKey = "0fd6db0a59ff9fe862f76b82719454e6";
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
-  // 🔁 Konuma göre veri alma fonksiyonu (useCallback ile)
   const getLocationWeather = useCallback(() => {
     navigator.geolocation.getCurrentPosition(
       async (position) => {
@@ -33,7 +33,6 @@ function App() {
     );
   }, [apiKey]);
 
-  // 🔃 İlk yüklemede konum ve localStorage
   useEffect(() => {
     getLocationWeather();
     const storedFavorites = localStorage.getItem("favorites");
@@ -113,25 +112,23 @@ function App() {
 
   const saveToDatabase = async () => {
     if (!weather) return;
-  
+
     const cityData = {
       name: weather.name,
       temp: weather.main.temp,
       description: weather.weather[0].description,
-      icon: weather.weather[0].icon
+      icon: weather.weather[0].icon,
     };
-  
-    console.log("Gönderilen veri:", cityData); // 🐞 debug
-  
+
     try {
-      const response = await fetch("http://localhost:5000/api/cities", {
+      const response = await fetch(`${BACKEND_URL}/api/cities`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(cityData)
+        body: JSON.stringify(cityData),
       });
-  
+
       const result = await response.json();
       if (response.ok) {
         alert("✅ Şehir başarıyla kaydedildi!");
@@ -143,7 +140,6 @@ function App() {
       alert("Sunucuya bağlanırken bir hata oluştu.");
     }
   };
-  
 
   const getBackgroundClass = (weatherMain) => {
     switch (weatherMain) {
@@ -166,9 +162,7 @@ function App() {
   return (
     <div
       className={`min-h-screen bg-gradient-to-r ${
-        weather
-          ? getBackgroundClass(weather.weather[0].main)
-          : "from-sky-400 to-blue-600"
+        weather ? getBackgroundClass(weather.weather[0].main) : "from-sky-400 to-blue-600"
       } flex items-center justify-center px-4 py-6`}
     >
       <div className="bg-white/20 backdrop-blur-md rounded-xl p-8 shadow-lg text-white max-w-2xl w-full">
