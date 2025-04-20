@@ -1,0 +1,28 @@
+/* src/App.css */
+.App {
+  text-align: center;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.weather-info {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  display: inline-block;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+}
