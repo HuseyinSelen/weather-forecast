@@ -33,10 +33,10 @@ It fetches real-time weather data using the **OpenWeatherMap API** and allows us
 
 > You can place screenshots in the `public/` or `assets/` folder and reference them like this:
 
-![Main Screen](./screenshot1.png)
+![Main Screen](./assets/screenshot1.png)
 *Home screen showing weather data with background gradient*
 
-![Forecast View](./screenshot2.png)
+![Forecast View](./assets/screenshot2.png)
 *5-day forecast layout with responsive design*
 
 ---
