@@ -117,31 +117,36 @@ function App() {
       name: weather.name,
       temp: weather.main.temp,
       description: weather.weather[0].description,
-      icon: weather.weather[0].icon,
+      icon: weather.weather[0].icon
     };
   
     try {
       const response = await fetch(`${BACKEND_URL}/api/cities`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(cityData),
+        body: JSON.stringify(cityData)
       });
   
       const result = await response.json();
   
+      if (response.status === 409) {
+        alert("⚠️ Bu şehir zaten veritabanına eklenmiş.");
+        return;
+      }
+  
       if (response.ok) {
         alert("✅ Şehir başarıyla kaydedildi!");
       } else {
-        // ❗ Hata mesajı backend'den geliyorsa göster
-        alert(`❌ ${result.message || "Kayıt başarısız."}`);
+        alert("❌ Kayıt başarısız: " + result.message);
       }
     } catch (error) {
       console.error("Hata:", error);
-      alert("❌ Sunucuya bağlanırken bir hata oluştu.");
+      alert("Sunucuya bağlanırken bir hata oluştu.");
     }
   };
+  
   
 
   const getBackgroundClass = (weatherMain) => {

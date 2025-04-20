@@ -5,9 +5,15 @@ const City = require("../models/City");
 // ŞEHİR KAYDET
 router.post("/", async (req, res) => {
   try {
-    console.log("🟢 Gelen veri:", req.body); // debug
-    const { name, temp, description, icon } = req.body;
-    const newCity = new City({ name, temp, description, icon });
+    const { name } = req.body;
+
+    // ✅ Aynı şehir daha önce eklenmiş mi?
+    const existing = await City.findOne({ name: new RegExp(`^${name}$`, "i") });
+    if (existing) {
+      return res.status(409).json({ message: "Bu şehir zaten kaydedilmiş." });
+          }
+
+    const newCity = new City(req.body);
     const savedCity = await newCity.save();
     res.status(201).json(savedCity);
   } catch (error) {
