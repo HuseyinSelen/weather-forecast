@@ -112,14 +112,14 @@ function App() {
 
   const saveToDatabase = async () => {
     if (!weather) return;
-
+  
     const cityData = {
       name: weather.name,
       temp: weather.main.temp,
       description: weather.weather[0].description,
       icon: weather.weather[0].icon,
     };
-
+  
     try {
       const response = await fetch(`${BACKEND_URL}/api/cities`, {
         method: "POST",
@@ -128,18 +128,21 @@ function App() {
         },
         body: JSON.stringify(cityData),
       });
-
+  
       const result = await response.json();
+  
       if (response.ok) {
         alert("✅ Şehir başarıyla kaydedildi!");
       } else {
-        alert("❌ Kayıt başarısız: " + result.message);
+        // ❗ Hata mesajı backend'den geliyorsa göster
+        alert(`❌ ${result.message || "Kayıt başarısız."}`);
       }
     } catch (error) {
       console.error("Hata:", error);
-      alert("Sunucuya bağlanırken bir hata oluştu.");
+      alert("❌ Sunucuya bağlanırken bir hata oluştu.");
     }
   };
+  
 
   const getBackgroundClass = (weatherMain) => {
     switch (weatherMain) {
