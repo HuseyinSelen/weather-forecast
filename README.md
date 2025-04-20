@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# ☀️ Weather Forecast App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack weather forecast application built with **React**, **Node.js**, and **MongoDB**.  
+It fetches real-time weather data using the **OpenWeatherMap API** and allows users to view 5-day forecasts, save their favorite cities, and store data in a database.
 
-## Available Scripts
+🔗 **Live Demo:** [https://your-vercel-app.vercel.app](https://your-vercel-app.vercel.app)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🛠️ Built With
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🔵 **Frontend:** React, Tailwind CSS
+- 🟢 **Backend:** Node.js, Express
+- 🍃 **Database:** MongoDB Atlas
+- ☁️ **Hosting:** Vercel (frontend), Render (backend)
+- 🌍 **API:** OpenWeatherMap
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## ✨ Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 📍 Detects current location & displays weather
+- 🔍 Search weather by city name
+- ❤️ Save & remove favorite cities
+- 🕔 5-day forecast preview
+- 💾 Save data to MongoDB database
+- 🚫 Prevents duplicate city entries
+- 🎨 Responsive design with Tailwind
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📸 Screenshots
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> You can place screenshots in the `public/` or `assets/` folder and reference them like this:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Main Screen](./screenshot1.png)
+*Home screen showing weather data with background gradient*
 
-### `npm run eject`
+![Forecast View](./screenshot2.png)
+*5-day forecast layout with responsive design*
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## ⚙️ Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 1. Clone the repo
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/your-username/weather-app.git
+cd weather-app
+```
 
-## Learn More
+### 2. Install dependencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm install
+cd backend && npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 3. Set up environment variables
 
-### Code Splitting
+Create two files:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### For Frontend (`.env.local`):
 
-### Analyzing the Bundle Size
+```
+REACT_APP_API_KEY=your_openweathermap_api_key
+REACT_APP_BACKEND_URL=https://your-backend.onrender.com
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### For Backend (`.env`):
 
-### Making a Progressive Web App
+```
+MONGO_URI=your_mongodb_connection_string
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+### 4. Run the app locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+# frontend
+npm start
 
-### Deployment
+# backend (in a second terminal)
+cd backend
+node server.js
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## 📡 API Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `GET /api/cities` → Get all saved cities  
+- `POST /api/cities` → Save new city weather data to DB (duplicate cities will be blocked)
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome. Feel free to open issues or suggest improvements.
+
+---
+
+## 📄 License
+MIT License © 2025 Hüseyin Selen
+
